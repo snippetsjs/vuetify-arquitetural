@@ -1,53 +1,32 @@
 <template>
   <v-app>
+    <v-content>
+      <v-container fluid ma-0 pa-0 fill-width>
+        <v-layout row>
+          <router-view></router-view>
+        </v-layout>
+      </v-container>
+    </v-content>
 
-    <v-navigation-drawer
-    fixed
-    v-model="drawer"
-    app
-    >
-    <v-list dense>
-      <v-list-tile @click="">
-        <v-list-tile-action>
-          <v-icon>home</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Home</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-      <v-list-tile @click="">
-        <v-list-tile-action>
-          <v-icon>contact_mail</v-icon>
-        </v-list-tile-action>
-        <v-list-tile-content>
-          <v-list-tile-title>Contact</v-list-tile-title>
-        </v-list-tile-content>
-      </v-list-tile>
-    </v-list>
-  </v-navigation-drawer>
+    <v-navigation-drawer></v-navigation-drawer>
 
-  <v-toolbar color="indigo" dark fixed app>
-    <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title>Application</v-toolbar-title>
-  </v-toolbar>
-
-  <v-content>
-    <HelloWorld/>
-  </v-content>
-</v-app>
+    <v-footer></v-footer>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import VNavigationDrawer from './components/shared/VNavigationDrawer'
+import VFooter from './components/shared/VFooter'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    VNavigationDrawer,
+    VFooter
   },
   data () {
     return {
-      drawer: null
+      //
     }
   }
 }
