@@ -6,7 +6,7 @@
     app
     >
     <v-list dense v-for="(menu, index) in menus">
-      <v-list-tile @click="">
+      <v-list-tile @click="" :to="menu.path">
         <v-list-tile-action>
           <v-icon>{{ menu.icon }}</v-icon>
         </v-list-tile-action>
@@ -19,7 +19,7 @@
 
   <v-toolbar color="indigo" dark fixed app>
     <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-    <v-toolbar-title>{{ $route.name }}</v-toolbar-title>
+    <v-toolbar-title>{{ drawerTitleSeleted }}</v-toolbar-title>
   </v-toolbar>
 </v-container>
 </template>
@@ -29,18 +29,17 @@ export default {
   data () {
     return {
       drawer: null,
-      drawerTitleSeleted: '',
       menus: [
-        { icon: 'home', title: 'Home' },
-        { icon: 'home', title: 'Page 1' },
-        { icon: 'home', title: 'Page 2' }
+        { path: '/home', icon: 'home', title: 'Home' },
+        { path: '/contact', icon: 'group', title: 'Contacts' },
+        { path: '/chats', icon: 'chat', title: 'Chats' }
       ]
     }
   },
   computed: {
-    // drawerSeletedTitle: function() {
-    //   return .this.$route.name
-    // }
+    drawerTitleSeleted: function() {
+      return this.$route.name
+    }
   }
 }
 </script>

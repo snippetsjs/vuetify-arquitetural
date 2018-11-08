@@ -1,4 +1,6 @@
-import Home from './components/Home';
+import Home from './components/Home'
+import Contacts from './components/Contacts'
+import Chats from './components/Chats'
 
 export const routes = [
   {
@@ -7,4 +9,14 @@ export const routes = [
     name: 'Home',
     component: Home,
   },
+  {
+    path: '/contact',
+    name: 'Contacts',
+    component: Contacts
+  },
+  {
+    path: '/chats',
+    name: 'Contacts',
+    component: Chats
+  }
 ]
