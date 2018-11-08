@@ -7,7 +7,7 @@ export const routes = [
     path: '/',
     alias: '/home',
     name: 'Home',
-    component: Home,
+    component: Home
   },
   {
     path: '/contact',
@@ -16,7 +16,7 @@ export const routes = [
   },
   {
     path: '/chats',
-    name: 'Contacts',
+    name: 'Chats',
     component: Chats
   }
 ]
