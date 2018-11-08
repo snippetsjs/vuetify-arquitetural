@@ -1,28 +1,31 @@
 import Vue from 'vue'
-import Viex from 'vuex'
+import Vuex from 'vuex'
 import VueResource from 'vue-resource'
 
 Vue.use(Vuex)
 Vue.use(VueResource)
 
 const state = {
-  contacts: [
-    { active: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-    { active: true, title: 'Ranee Carlson', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-    { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-    { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }
-  ]
+  contacts: []
 }
 
 const mutations = {
-
+  'set-state-contacts'(state, contacts){
+    state.contacts = contacts
+  }
 }
 
 const actions = {
-
+  'load-state-contacts'(context){
+    Vue.http.get('https://aquarios-c47c4.firebaseio.com/contacts.json')
+    .then(response => {
+      let contacts = response.data;
+      context.commit('set-state-contacts', contacts)
+    })
+  }
 }
 
-export default new Vuex({
+export default new Vuex.Store({
   state,
   getters: [],
   mutations,

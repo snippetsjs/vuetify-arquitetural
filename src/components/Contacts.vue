@@ -2,42 +2,48 @@
   <v-container fluid ma-0 pa-0 fill-width>
     <v-layout row>
       <v-flex xs12>
-          <v-list subheader>
-            <v-subheader>Recent chat</v-subheader>
-            <v-list-tile
-            v-for="item in items"
-            :key="item.title"
-            avatar
-            @click=""
-            >
-            <v-list-tile-avatar>
-              <img :src="item.avatar">
-            </v-list-tile-avatar>
+        <v-list subheader>
+          <v-subheader>Recent chat</v-subheader>
+          <v-list-tile
+          v-for="contact in contacts"
+          :key="contact.title"
+          avatar
+          @click=""
+          >
+          <v-list-tile-avatar>
+            <img :src="contact.avatar">
+          </v-list-tile-avatar>
 
-            <v-list-tile-content>
-              <v-list-tile-title v-html="item.title"></v-list-tile-title>
-            </v-list-tile-content>
+          <v-list-tile-content>
+            <v-list-tile-title v-html="contact.title"></v-list-tile-title>
+          </v-list-tile-content>
 
-            <v-list-tile-action>
-              <v-icon :color="item.active ? 'teal' : 'grey'">chat_bubble</v-icon>
-            </v-list-tile-action>
-          </v-list-tile>
-        </v-list>
+          <v-list-tile-action>
+            <v-icon :color="contact.active ? 'teal' : 'grey'">chat_bubble</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+      </v-list>
     </v-flex>
   </v-layout>
 </v-container>
 </template>
 
 <script>
+import store from '../store'
+/*
+  No momento da execução do methods do ciclo de vida do componente (created)
+  é disparada uma evento para a store solicitando que os dados sejá carregado.
+
+  Utilizando um method computed, os dados são mapeados no componente apartir
+  do unico pode de verdade(Single Source Of Truth).
+*/
 export default {
-  data () {
-    return {
-      items: [
-        { active: true, title: 'Jason Oner', avatar: 'https://cdn.vuetifyjs.com/images/lists/1.jpg' },
-        { active: true, title: 'Ranee Carlson', avatar: 'https://cdn.vuetifyjs.com/images/lists/2.jpg' },
-        { title: 'Cindy Baker', avatar: 'https://cdn.vuetifyjs.com/images/lists/3.jpg' },
-        { title: 'Ali Connors', avatar: 'https://cdn.vuetifyjs.com/images/lists/4.jpg' }
-      ]
+  created(){
+    store.dispatch('load-state-contacts')
+  },
+  computed: {
+    contacts() {
+      return store.state.contacts
     }
   }
 }
