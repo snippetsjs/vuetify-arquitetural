@@ -43,7 +43,7 @@ export default {
   },
   computed: {
     contacts() {
-      return store.state.contacts
+      return store.state.contacts.contacts
     }
   }
 }
