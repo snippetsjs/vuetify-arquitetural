@@ -1,5 +1,12 @@
 # Vuetify Arquitetural
 
+- Vue CLI 3
+- Vuetify
+- VueRouter
+- Vuex
+- Axios
+- Webpack 4
+
 ## Project setup
 ```
 npm install
